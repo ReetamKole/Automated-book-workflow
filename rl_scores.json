@@ -2,5 +2,13 @@
   "ai_writer_output": {
     "reward": 2,
     "count": 2
+  },
+  "chapter1-final": {
+    "reward": 1,
+    "count": 1
+  },
+  "chapter1-writer": {
+    "reward": 1,
+    "count": 1
   }
 }
