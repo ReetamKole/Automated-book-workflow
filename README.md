@@ -98,6 +98,24 @@ Choose to input text manually or provide a chapter URL to scrape.
 python search_versions.py
 ```
 
+### Run Search + Feedback
+```bash
+python search_versions.py
+```
+Then:
+- Enter search queries
+- Provide feedback (`up` or `down`)
+- View top-ranked results
+
+## Reinforcement Learning Feedback
+
+User feedback is saved in `rl_scores.json` and used to influence future search result ranking.
+
+Example:
+```python
+update_score(version_id, +1)  # Upvote
+update_score(version_id, -1)  # Downvote
+
 Search content, view ranked results, and provide feedback.
 
 ---
