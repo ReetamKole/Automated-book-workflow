@@ -98,14 +98,7 @@ Choose to input text manually or provide a chapter URL to scrape.
 python search_versions.py
 ```
 
-### Run Search + Feedback
-```bash
-python search_versions.py
-```
-Then:
-- Enter search queries
-- Provide feedback (`up` or `down`)
-- View top-ranked results
+
 
 ## Reinforcement Learning Feedback
 
@@ -115,6 +108,16 @@ Example:
 ```python
 update_score(version_id, +1)  # Upvote
 update_score(version_id, -1)  # Downvote
+```
+
+## Example Flow
+
+1. User provides or scrapes chapter content
+2. AI rewrites chapter via `ai_writer.py`
+3. Reviewer (optional) improves it using `human_review.py`
+4. All versions stored via `store_versions.py`
+5. `search_versions.py` handles semantic retrieval
+6. User feedback is looped back via RL
 
 Search content, view ranked results, and provide feedback.
 
