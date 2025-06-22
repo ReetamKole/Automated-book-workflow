@@ -1,25 +1,20 @@
-Automated Book Workflow
+# Automated Book Workflow
+
 An AI-powered pipeline that automates book content generation, rewriting, human review, version storage, and intelligent search using Google Gemini, ChromaDB, and Reinforcement Learning-based feedback ranking.
 
-Features
-Web Scraping: Fetch chapter content directly from URLs (e.g., Wikisource)
+## Features
 
-AI Writer: Rewrites and enhances chapter content using Google Gemini API
+- Web Scraping: Fetch chapter content directly from URLs (e.g. Wikisource)
+- AI Writer: Rewrites and enhances chapter content using Google Gemini API
+- Human Reviewer Agent: Optional review step by a second AI for quality assurance
+- Version Storage: Save AI and reviewed outputs into ChromaDB
+- Semantic Search: Find the most relevant version using vector search
+- RL Feedback System: Let users upvote/downvote results to influence ranking
+- Leaderboard: Display most helpful versions based on cumulative feedback
 
-Human Reviewer Agent: Optional review step by a second AI for quality assurance
+## Folder Structure
 
-Version Storage: Save AI and reviewed outputs into ChromaDB
-
-Semantic Search: Find the most relevant version using vector search
-
-RL Feedback System: Let users upvote/downvote results to influence ranking
-
-Leaderboard: Display most helpful versions based on cumulative feedback
-
-Folder Structure
-bash
-Copy
-Edit
+```
 automated-book-workflow/
 │
 ├── chroma_db/                # ChromaDB persistent storage
@@ -40,93 +35,79 @@ automated-book-workflow/
 │
 ├── requirements.txt
 └── README.md
-Setup Instructions
-1. Create Virtual Environment
-bash
-Copy
-Edit
+```
+
+## Setup Instructions
+
+### 1. Create Virtual Environment
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-2. Install Dependencies
-bash
-Copy
-Edit
+```
+
+### 2. Install Dependencies
+```bash
 pip install -r requirements.txt
 playwright install
-3. Set Gemini API Key
-Create a .env file or export the key manually:
+```
 
-bash
-Copy
-Edit
+### 3. Set Gemini API Key
+Create a `.env` file or export the key manually:
+```bash
 export GEMINI_API_KEY=your_key_here
-How to Run
-Run Full Pipeline
-bash
-Copy
-Edit
+```
+
+## How to Run
+
+### Run Full Pipeline
+```bash
 python agent_pipeline.py
+```
 Options:
+- Paste raw chapter text manually
+- OR choose to scrape from a chapter URL
 
-Paste raw chapter text manually
-
-OR choose to scrape from a chapter URL
-
-Run Search + Feedback
-bash
-Copy
-Edit
+### Run Search + Feedback
+```bash
 python search_versions.py
+```
 Then:
+- Enter search queries
+- Provide feedback (`up` or `down`)
+- View top-ranked results
 
-Enter search queries
+## Reinforcement Learning Feedback
 
-Provide feedback (up or down)
-
-View top-ranked results
-
-Reinforcement Learning Feedback
-User feedback is saved in rl_scores.json and used to influence future search result ranking.
+User feedback is saved in `rl_scores.json` and used to influence future search result ranking.
 
 Example:
-
-python
-Copy
-Edit
+```python
 update_score(version_id, +1)  # Upvote
 update_score(version_id, -1)  # Downvote
-Example Flow
-User provides or scrapes chapter content
+```
 
-AI rewrites chapter via ai_writer.py
+## Example Flow
 
-Reviewer (optional) improves it using human_review.py
+1. User provides or scrapes chapter content
+2. AI rewrites chapter via `ai_writer.py`
+3. Reviewer (optional) improves it using `human_review.py`
+4. All versions stored via `store_versions.py`
+5. `search_versions.py` handles semantic retrieval
+6. User feedback is looped back via RL
 
-All versions stored via store_versions.py
+## TODO Suggestions
 
-search_versions.py handles semantic retrieval
+- Add retry/error handling for API and scraping failures
+- Implement tagging and metadata for versions
+- Track sessions/users to improve personalization
+- Optional: Build a web dashboard using Flask or Streamlit
 
-User feedback is looped back via RL
+## Credits
 
-TODO Suggestions
-Add retry/error handling for API and scraping failures
-
-Implement tagging and metadata for versions
-
-Track sessions/users to improve personalization
-
-Optional: Build a web dashboard using Flask or Streamlit
-
-Credits
 Built by Reetam Kole using:
+- Google Gemini
+- ChromaDB
 
-Google Gemini
+## License
 
-ChromaDB
-
-Playwright
-
-Reinforcement Learning from Human Feedback
-
-License
 MIT License
