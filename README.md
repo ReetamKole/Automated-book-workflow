@@ -102,12 +102,3 @@ update_score(version_id, -1)  # Downvote
 - Track sessions/users to improve personalization
 - Optional: Build a web dashboard using Flask or Streamlit
 
-## Credits
-
-Built by Reetam Kole using:
-- Google Gemini
-- ChromaDB
-
-## License
-
-MIT License
