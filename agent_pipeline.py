@@ -62,3 +62,5 @@ print("\n🏆 Most helpful versions (by user feedback):")
 for doc_id, stats in get_ranked_versions().items():
     avg_score = stats['reward'] / max(stats['count'], 1)
     print(f"  - {doc_id}: {avg_score:.2f} avg (votes: {stats['count']})")
+
+#AUTOMATES THE WHOLE PROCESS
